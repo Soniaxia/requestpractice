@@ -62,7 +62,7 @@ class Repos(RestClient):
         :param kwargs:
         :return:
         '''
-        return self.get("/repos/{}/{}".format(owner,repo),kwargs)
+        return self.get("/repos/{}/{}".format(owner,repo),**kwargs)
 
     def edit_repo(self,owner,repo,**kwargs):
         '''

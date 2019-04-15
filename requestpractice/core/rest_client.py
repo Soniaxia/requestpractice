@@ -1,4 +1,6 @@
-import requests,json
+import requests
+import json as json_parser
+
 
 class RestClient():
     def __init__(self,api_root_url,username=None,password=None,token=None):
@@ -38,13 +40,15 @@ class RestClient():
         if method_name=="options":
             return self.session.options(url,**kwargs)
         if method_name=="head":
-            return self.session.head(self,url,**kwargs)
+            return self.session.head(url,**kwargs)
         if method_name=="put":
-            return self.session.put(self,url,data,**kwargs)
+            return self.session.put(url,data,**kwargs)
         if method_name=="patch":
-            return self.session.patch(self,url,data,**kwargs)
+            if json:
+                data = json_parser.dumps(json)
+            return self.session.patch(url,data,**kwargs)
         if method_name=="delete":
-            return self.session.delete(self,url,**kwargs)
+            return self.session.delete(url,**kwargs)
 
 
 if __name__ =='__main__':
